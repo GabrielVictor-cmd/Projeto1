@@ -37,9 +37,11 @@ def cadastrar_novo_restaurante():
     exibir_subtitulo("Cadastro de novos restaurantes")
 
     nome_restaurante = input("Digite o nome do restaurante que deseja cadastrar: ")
-    restaurantes.append(nome_restaurante)
-    
+    categoria = input(f"Digite o nome da categoria do restaurante que deseja cadastrar: ")
+    dados_do_restaurante = {"nome": nome_restaurante, "categoria": categoria, "ativo": False}
+    restaurantes.append(dados_do_restaurante)
     print(f"O restaurante {nome_restaurante} foi cadastrado com sucesso!")
+    
     voltar_menu_principal()
 
 def listar_restaurantes():
@@ -47,10 +49,12 @@ def listar_restaurantes():
 
     for restaurante in restaurantes:
         nome_restaurantes = restaurante['nome']
-        print(f" - {nome_restaurantes}")
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
+        print(f" - {nome_restaurantes} | {categoria} | {ativo}")
         
-
     input("Digite ENTER para voltar ao menu principal")
+    main()
 
 def escolher_opçao():
     try:
