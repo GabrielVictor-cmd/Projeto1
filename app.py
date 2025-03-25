@@ -41,7 +41,7 @@ def cadastrar_novo_restaurante():
     dados_do_restaurante = {"nome": nome_restaurante, "categoria": categoria, "ativo": False}
     restaurantes.append(dados_do_restaurante)
     print(f"O restaurante {nome_restaurante} foi cadastrado com sucesso!")
-    
+
     voltar_menu_principal()
 
 def listar_restaurantes():
@@ -56,6 +56,21 @@ def listar_restaurantes():
     input("Digite ENTER para voltar ao menu principal")
     main()
 
+def ativação_de_restaurante():
+    exibir_subtitulo("Alterando")
+    nome_restaurante = input("Digite o nome do restaurante que deseja alterar o estado: ")
+    restaurante_encontrado = False
+    
+    for restaurante in restaurante:
+        if nome_restaurante == restaurante["nome"]:
+            restaurante_encontrado = True
+            restaurante["ativo"] = not restaurante["ativo"]
+            mensagem = f"O restaurante {nome_restaurante} foi ativado com sucesso" if restaurante ["ativo"] else f"O restaurante {nome_restaurante} foi desativado com sucesso"
+            print(mensagem)
+
+    if not restaurante_encontrado:
+        print("o Restaurante não foi encontrado")
+
 def escolher_opçao():
     try:
         opçao_escolhida = int(input("Escolha uma opção: "))
@@ -68,7 +83,7 @@ def escolher_opçao():
             listar_restaurantes()
         
         elif opçao_escolhida == 3:
-            print("Ativar restaurantes")
+            ativação_de_restaurante()
 
         elif opçao_escolhida == 4:
             Encerrando_programa()
