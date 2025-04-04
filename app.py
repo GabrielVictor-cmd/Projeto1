@@ -5,33 +5,50 @@ restaurantes = [{"nome": "Temperaria Salgada", "categoria": "Salgada", "ativo": 
                 ]
 
 def exibir_nome_do_programa():
+    ''''Exibe o nome do programa'''
+    
     print("Salgado Tempero\n")
 
 def exibir_opçoes():
+    ''''Exibe as opções'''
+
     print("1- Cadastrar restaurante")
     print("2- Listar Restaurante")
-    print("3- Ativar restaurante")
+    print("3- Alternar estado do restaurante")
     print("4- Sair\n")
 
 def Encerrando_programa():
+    ''''Encerra o programa'''
+
     os.system("cls")
     print("Encerrando programa...")
     exibir_subtitulo("Encerrando o programa")
 
 def voltar_menu_principal():
+    ''''Volta para o menu principal'''
+
     input("\nDigite ENTER para valtar para o menu principal")
     main()
 
 def opçao_invalida():
+    ''''Mostra quando é digitado uma opção inválida'''
+
     print("Opção inválida!")
     voltar_menu_principal()
 
 def exibir_subtitulo(texto):
+    ''''Exibe subtitulos'''
+
     os.system("cls")
+    linha = "=" * (len(texto))
+    print(linha)
     print(texto)
+    print(linha)
     print()
 
 def cadastrar_novo_restaurante():
+    ''''Cadastra um novo restaurante'''
+
     os.system("cls")
     print("Cadastro de novos restaurantes")
     exibir_subtitulo("Cadastro de novos restaurantes")
@@ -45,18 +62,22 @@ def cadastrar_novo_restaurante():
     voltar_menu_principal()
 
 def listar_restaurantes():
+    ''''Exibe uma lista de restaurantes'''
+
     exibir_subtitulo("Listanto restaurantes: ")
 
     for restaurante in restaurantes:
         nome_restaurantes = restaurante['nome']
         categoria = restaurante['categoria']
-        ativo = restaurante['ativo']
-        print(f" - {nome_restaurantes} | {categoria} | {ativo}")
+        ativo = 'Ativo' if restaurante['ativo'] else 'Desativado'
+        print(f" - {nome_restaurantes.ljust(20)} | {categoria.ljust(20)} | {ativo}")
         
     input("Digite ENTER para voltar ao menu principal")
     main()
 
-def ativação_de_restaurante():
+def alterar_estado_restaurante():
+    ''''Altera o estado de atividade do restaurante'''
+
     exibir_subtitulo("Alterando")
     nome_restaurante = input("Digite o nome do restaurante que deseja alterar o estado: ")
     restaurante_encontrado = False
@@ -69,9 +90,11 @@ def ativação_de_restaurante():
             print(mensagem)
 
     if not restaurante_encontrado:
-        print("o Restaurante não foi encontrado")
+        print("O Restaurante não foi encontrado")
 
 def escolher_opçao():
+    ''''Para o usuário escolher uma das opções'''
+
     try:
         opçao_escolhida = int(input("Escolha uma opção: "))
         print(f"Você escolheu a opção: {opçao_escolhida}\n")
@@ -83,7 +106,7 @@ def escolher_opçao():
             listar_restaurantes()
         
         elif opçao_escolhida == 3:
-            ativação_de_restaurante()
+            alterar_estado_restaurante()
 
         elif opçao_escolhida == 4:
             Encerrando_programa()
@@ -95,10 +118,14 @@ def escolher_opçao():
         opçao_invalida()
 
 def main():
+    '''Deixa o programa aberto até o usuário determinar que deseja encerrar'''
+
     os.system("cls")
     exibir_nome_do_programa()
     exibir_opçoes()
     escolher_opçao()
 
 if __name__ == "__main__":
+    ''''Como eu disse acima, mantém o programa funcionando'''
+
     main()
